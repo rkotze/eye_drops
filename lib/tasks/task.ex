@@ -1,10 +1,6 @@
 defmodule EyeDrops.Task do
 	defstruct id: "", name: "", cmd: "", path: ""
 
-	def run_on_match(changed_file) do
-			
-	end
-
 	def get(task_id) do
 		EyeDrops.Tasks.get() |>
 		Enum.find(fn(task) -> 

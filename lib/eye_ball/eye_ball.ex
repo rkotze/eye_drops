@@ -1,15 +1,10 @@
 defmodule EyeDrops.EyeBall do
  	use GenServer
- 	alias EyeDrops.Tasks.Path
- 	alias EyeDrops.Task
+ 	alias EyeDrops.Tasks
 
  	# External api
  	def open() do
  		GenServer.start_link( __MODULE__, "", name: __MODULE__ )
- 	end
-
- 	defp exec(task) do
- 		Mix.Shell.cmd(task.cmd, [], fn(x) -> IO.puts x end)
  	end
 
  	# GenServer implementation
@@ -19,8 +14,13 @@ defmodule EyeDrops.EyeBall do
   end
 
  	def handle_info({_pid, {:fs, :file_event}, {path, _event}}, state) do
-    to_string(path)
-    IO.inspect(state)
+    task = Tasks.to_run(to_string(path)) |>
+    Enum.at(0)
+    if task do
+	    IO.puts "Running #{task.name}..."
+	    Tasks.exec(task.cmd)
+	  end
+    # IO.inspect(state)
     {:noreply, state}
   end
 end
