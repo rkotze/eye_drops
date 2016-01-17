@@ -1,0 +1,3 @@
+%{"fs": {:git, "https://github.com/synrc/fs.git", "5bec73a9b968834cd77e1b3932ffa8321c984e87", [tag: "1.9"]},
+  "meck": {:hex, :meck, "0.8.4"},
+  "mock": {:hex, :mock, "0.1.1"}}
