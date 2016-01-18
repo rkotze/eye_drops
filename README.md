@@ -1,6 +1,8 @@
 # EyeDrops
 
-**TODO: Add description**
+A configurable watch mix task.
+
+Watch a list of directories for any file changes and run a task when a change happens.
 
 ## Installation
 
