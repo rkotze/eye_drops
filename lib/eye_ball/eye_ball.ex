@@ -14,13 +14,18 @@ defmodule EyeDrops.EyeBall do
   end
 
  	def handle_info({_pid, {:fs, :file_event}, {path, _event}}, state) do
-    task = Tasks.to_run(to_string(path)) |>
-    Enum.at(0)
-    if task do
-	    IO.puts "Running #{task.name}..."
-	    Tasks.exec(task.cmd)
+    tasks = Tasks.to_run(to_string(path))
+    if tasks do
+	    :ok = Tasks.exec(tasks)
+      finish
 	  end
-    # IO.inspect(state)
     {:noreply, state}
   end
+
+  defp finish do
+    receive do
+      _ -> finish
+      after 0 -> :ok
+    end
+  end 
 end
