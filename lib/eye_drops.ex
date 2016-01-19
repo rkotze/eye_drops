@@ -4,7 +4,7 @@ defmodule Mix.Tasks.EyeDrops do
 
 	def run(args) do
 		:ok = Application.start :fs, :permanent
-		IO.puts "Eye spy with my little eye..."
+		IO.puts "Eye drops applied"
 
 		{:ok, _} = EyeBall.open()
 		
