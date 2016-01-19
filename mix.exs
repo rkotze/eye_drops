@@ -13,7 +13,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :fs]]
   end
 
   defp aliases do
@@ -26,8 +26,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
 
   defp deps do
     [
-      {:fs, git: "https://github.com/synrc/fs.git", tag: "1.9"},
-      {:mock, "~> 0.1.1", only: :test}
+      {:fs, "~> 0.9.1"}
     ]
   end
 end
