@@ -3,11 +3,8 @@ otp_release:
   - 17.5
   - 18.0
 elixir:
-  - 1.0.4
   - 1.0.5
   - 1.1.0
-env:
-  - MIX_ENV=test
 script:
   - mix local.hex --force
   - mix deps.get
