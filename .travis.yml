@@ -1,20 +1,10 @@
 language: elixir
 otp_release:
-  - 17.5
   - 18.0
 elixir:
-  - 1.0.5
   - 1.1.0
 script:
   - mix local.hex --force
   - mix deps.get
   - mix compile --warnings-as-errors
   - mix test
-
-notifications:
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/7463a4c07625b79e8a5c
-    on_success: change
-    on_failure: always
-    on_start: false
