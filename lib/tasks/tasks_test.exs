@@ -32,7 +32,7 @@ defmodule EyeDrops.TasksTest do
 		printed = capture_io(fn ->
 				EyeDrops.Tasks.exec([task])
 		end)
-		assert printed == "Running #{task.name}...\ndemo1\r\nFinished #{task.name}...\n"
+		assert String.contains?(printed, ["Running", task.name, "Finished"])
 	end
 
 	test "Run expected tasks with expected output", %{:tasks => tasks} do
@@ -41,6 +41,6 @@ defmodule EyeDrops.TasksTest do
 		end)
 		task1 = Enum.at(tasks,0)
 		task2 = Enum.at(tasks,1)
-		assert printed == "Running #{task1.name}...\ndemo1\r\nFinished #{task1.name}...\nRunning #{task2.name}...\ndemo2\r\nFinished #{task2.name}...\n"
+		assert String.contains?(printed, ["Running", task1.name, task2.name, "Finished"])
 	end
 end

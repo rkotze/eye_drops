@@ -1,5 +1,6 @@
 # EyeDrops
 
+[![Build Status](https://travis-ci.org/rkotze/eye_drops.svg?branch=master)](https://travis-ci.org/rkotze/eye_drops) 
 [![Gitter](https://badges.gitter.im/rkotze/eye_drops.svg)](https://gitter.im/rkotze/eye_drops?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ### A configurable watch mix task
