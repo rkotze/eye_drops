@@ -3,16 +3,20 @@ otp_release:
   - 18.0
 elixir:
   - 1.1.0
+before_install:
+ - sudo apt-get install inotify-tools
+env:
+  - MIX_ENV=test
 script:
   - mix local.hex --force
   - mix deps.get
   - mix compile --warnings-as-errors
   - mix test
-  
+
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/7463a4c07625b79e8a5c
+      - https://webhooks.gitter.im/e/cad77fdb5cda2050ced8
     on_success: change
     on_failure: always
     on_start: false
