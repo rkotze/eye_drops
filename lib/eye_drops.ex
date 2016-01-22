@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.EyeDrops do
 	use Mix.Task
-	alias EyeDrops.EyeBall 
+	alias EyeDrops.EyeBall
 
 	def run(_args) do
 		:ok = Application.start :fs, :permanent
