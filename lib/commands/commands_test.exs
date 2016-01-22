@@ -18,4 +18,9 @@ defmodule EyeDrops.CommandsTest do
     end
   end
 
+  test "No switches passed" do
+    result = Commands.parse([])
+    assert result == {:ok, %{}}
+  end
+
 end
