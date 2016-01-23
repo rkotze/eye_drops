@@ -18,9 +18,23 @@ defmodule EyeDrops.TasksTest do
 		{:ok, %{:tasks => tasks}}
 	end
 
-	test "Get tasks to run if expected file has changed" do
-		tasks = EyeDrops.Tasks.to_run("some/path/lib/eye_drops.ex")
-		assert Enum.at(tasks,0).id == :unit_tests
+	test "Get tasks from the config with a list of ids" do
+		task_ids = [:unit_tests, :acceptance]
+		tasks = EyeDrops.Tasks.get(task_ids)
+		assert Enum.all?(tasks, fn task -> task.id in task_ids end)
+	end
+
+	test "Get all tasks from the config" do
+		task_ids = [:unit_tests, :acceptance]
+		tasks = EyeDrops.Tasks.get()
+		assert Enum.all?(tasks, fn task -> task.id in task_ids end)
+	end
+
+	# mock get config with empty tasks
+
+	test "Get tasks to run if expected file has changed", %{:tasks => tasks} do
+		tasks = EyeDrops.Tasks.to_run(tasks, "some/path/lib/eye_drops.ex")
+		assert Enum.at(tasks,0).id == :demo1
 	end
 
 	test "No tasks to run" do

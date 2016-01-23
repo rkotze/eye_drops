@@ -7,7 +7,11 @@ config :eye_drops,
 			name: "unit tests",
 			cmd: "mix test",
 			paths: ["lib/*"]
+		},
+		%{
+			id: :acceptance,
+			name: "acceptance tests",
+			cmd: "mix acceptance",
+			paths: ["feature/*"]
 		}
 	]
-
-import_config "#{Mix.env}.exs"
