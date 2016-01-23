@@ -29,7 +29,7 @@ defmodule EyeDrops.EyeBall do
   end
 
   def handle_call({:lookup, name}, _from, state) do
-    {:reply, Map.fetch(state.tasks, name), state}
+    {:reply, Map.fetch(state, name), state}
   end
 
   defp finish do
