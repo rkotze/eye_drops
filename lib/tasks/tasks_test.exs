@@ -30,6 +30,12 @@ defmodule EyeDrops.TasksTest do
 		assert Enum.all?(tasks, fn task -> task.id in task_ids end)
 	end
 
+	test "Raise an exception if no tasks returned" do
+		assert_raise TasksError, "No tasks found", fn -> 
+      EyeDrops.Tasks.get([])
+    end
+	end
+
 	# mock get config with empty tasks
 
 	test "Get tasks to run if expected file has changed", %{:tasks => tasks} do
