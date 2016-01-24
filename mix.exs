@@ -3,7 +3,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
 
   def project do
     [app: :eye_drops,
-     version: "0.1.0",
+     version: "1.0.0",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -28,7 +28,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
     ]
   end
 
-   defp description do
+  defp description do
     """
     A configurable watch mix tasks
     Watch file changes in a project and run the corresponding command when a change happens.
@@ -41,6 +41,6 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
      maintainers: ["Richard Kotze"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/rkotze/eye_drops",
-              "Docs" => "https://github.com/rkotze/eye_drops"}]
+              "Docs" => "https://github.com/rkotze/eye_drops/blob/master/README.md"}]
   end
 end

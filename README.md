@@ -7,17 +7,19 @@
 
 Watch file changes in a project and run the corresponding command when a change happens.
 
+`mix eye_drops` Start watching all configured tasks
+
 ## Installation
 
 Add `eye_drops` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:eye_drops, "~> 0.0.1"}]
+  [{:eye_drops, "~> 1.0.0"}]
 end
 ```
 
-## Basic usage
+## Basic setup
 
 In your config folder, add the following `eye_drops` config into one of your config files.
 
@@ -37,7 +39,18 @@ config :eye_drops,
 
 You can setup multiple tasks and it will run one after the other.
 
-## If using vagrant
+## task properties
+
+- `id` unique atom to identify tasks
+- `name` provide a name for task
+- `cmd` the actual command to run
+- `path` is a list. Can be exact, glob pattern or just a folder name
+
+## Optional switches
+
+- `mix eye_drops --include_tasks "unit_tests,acceptance"` provide the id of tasks to watch instead of all
+
+### If using vagrant
 
 This is if you are editing your files outside of the vagrant machine e.g. windows but running commands in vagrant.
 
