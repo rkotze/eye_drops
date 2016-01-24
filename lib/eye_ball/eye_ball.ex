@@ -15,7 +15,11 @@ defmodule EyeDrops.EyeBall do
  	def init(tasks) do
     :ok = :fs.subscribe
     include_list = Map.get(tasks, :include_tasks, [])
-    tasks = Tasks.get(include_list)
+    
+    tasks = case include_list do
+      list when list == [] -> Tasks.get
+      list -> Tasks.get(list)
+    end
     {:ok, %{ tasks: tasks }}
   end
 
