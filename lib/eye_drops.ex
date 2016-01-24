@@ -1,12 +1,14 @@
 defmodule Mix.Tasks.EyeDrops do
 	use Mix.Task
 	alias EyeDrops.EyeBall
+	alias EyeDrops.Commands
 
 	def run(args) do
 		:ok = Application.start :fs, :permanent
 		IO.puts "Eye drops applied"
 
-		{:ok, _} = EyeBall.open(args)
+		{:ok, switches } = Commands.parse(args)
+		{:ok, _} = EyeBall.open(switches)
 		
 		:timer.sleep :infinity
 	end
