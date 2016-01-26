@@ -3,11 +3,15 @@
 [![Build Status](https://travis-ci.org/rkotze/eye_drops.svg?branch=master)](https://travis-ci.org/rkotze/eye_drops) 
 [![Gitter](https://badges.gitter.im/rkotze/eye_drops.svg)](https://gitter.im/rkotze/eye_drops?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-### A configurable watch mix task
+### A configurable mix task to watch for file changes
+
+`mix eye_drops` Start watching all configured tasks
+
+### Description
 
 Watch file changes in a project and run the corresponding command when a change happens.
 
-`mix eye_drops` Start watching all configured tasks
+The reason for this is to make code changes and let the unit and acceptance tests to auto run to help get feed back quicker.
 
 ## Installation
 
@@ -48,7 +52,7 @@ You can setup multiple tasks and it will run one after the other.
 
 ## Optional switches
 
-- `mix eye_drops --include_tasks "unit_tests,acceptance"` provide the id of tasks to watch instead of all
+- `mix eye_drops --include-tasks "unit_tests,acceptance"` provide the id of tasks to watch instead of all
 
 ### If using vagrant
 
