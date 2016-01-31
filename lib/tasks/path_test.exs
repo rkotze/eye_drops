@@ -3,7 +3,7 @@ defmodule EyeDrops.Tasks.PathTest do
   alias EyeDrops.Tasks.Path
 
   test "Path exists" do
-  	result = Path.exists?("lib/eye_drops.ex")
+  	result = Path.exists?("lib/mix/tasks/eye_drops.ex")
     assert result == true
   end
 
@@ -13,17 +13,17 @@ defmodule EyeDrops.Tasks.PathTest do
   end
 
   test "Changed file matches list of paths from task" do
-  	result = Path.spotted?("/some/random/lib/eye_drops.ex", ["lib/eye_drops.ex", "lib/other.ex"])
+  	result = Path.spotted?("random/lib/mix/tasks/eye_drops.ex", ["lib/mix/tasks/eye_drops.ex", "lib/other.ex"])
     assert result == true
   end
 
   test "Changed file matches list of wildcard paths from task" do
-  	result = Path.spotted?("/some/random/lib/eye_drops.ex", ["lib/*", "test/other.ex"])
+  	result = Path.spotted?("lib/mix/tasks/eye_drops.ex", ["lib/mix/tasks/*", "test/other.ex"])
     assert result == true
   end
 
   test "Changed file matches wildcard path from task" do
-  	result = Path.spotted?("/some/random/lib/eye_drops.ex", "lib/*")
+  	result = Path.spotted?("lib/mix/tasks/eye_drops.ex", "lib/*")
     assert result == true
   end
 

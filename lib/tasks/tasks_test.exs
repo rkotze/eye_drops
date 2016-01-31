@@ -39,7 +39,7 @@ defmodule EyeDrops.TasksTest do
 	# mock get config with empty tasks
 
 	test "Get tasks to run if expected file has changed", %{:tasks => tasks} do
-		tasks = EyeDrops.Tasks.to_run(tasks, "some/path/lib/eye_drops.ex")
+		tasks = EyeDrops.Tasks.to_run(tasks, "some/path/lib/mix/tasks/eye_drops.ex")
 		assert Enum.at(tasks,0).id == :demo1
 	end
 
