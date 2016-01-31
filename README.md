@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rkotze/eye_drops.svg?branch=master)](https://travis-ci.org/rkotze/eye_drops) 
 [![Gitter](https://badges.gitter.im/rkotze/eye_drops.svg)](https://gitter.im/rkotze/eye_drops?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Hex pm](https://img.shields.io/hexpm/v/eye_drops.svg?style=flat)](https://hex.pm/packages/eye_drops)
 
 ### A configurable mix task to watch for file changes
 
@@ -9,9 +10,9 @@
 
 ### Description
 
-Watch file changes in a project and run the corresponding command when a change happens.
+Watch file changes in a project and run the corresponding command when a matching file change happens.
 
-The reason for this is to make code changes and let the unit and acceptance tests to auto run to help get feed back quicker.
+The reason for this is when code changes are made you typically want to run unit and acceptance tests. So while you make changes you can configure this mix tasks to auto run and help get feed back quicker.
 
 ## Installation
 
