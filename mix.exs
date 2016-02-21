@@ -3,7 +3,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
 
   def project do
     [app: :eye_drops,
-     version: "1.0.1",
+     version: "1.1.0",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,

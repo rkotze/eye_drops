@@ -20,7 +20,7 @@ Add `eye_drops` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:eye_drops, "~> 1.0.0"}]
+  [{:eye_drops, "~> 1.1.0"}]
 end
 ```
 
