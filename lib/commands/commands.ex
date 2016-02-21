@@ -19,7 +19,7 @@ defmodule EyeDrops.Commands do
 
   def watch() do
     task_id = IO.gets ""
-
+    rerun(task_id)
     watch
   end
 
