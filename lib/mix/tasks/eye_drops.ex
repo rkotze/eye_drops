@@ -9,8 +9,8 @@ defmodule Mix.Tasks.EyeDrops do
 
 		{:ok, switches } = Commands.parse(args)
 		{:ok, _} = EyeBall.open(switches)
-		
-		:timer.sleep :infinity
+
+		Commands.watch
 	end
 
 end

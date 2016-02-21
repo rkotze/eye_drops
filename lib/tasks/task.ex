@@ -13,6 +13,14 @@ defmodule EyeDrops.Task do
 
 	def to_exec(_task_id), do: {:error, "task id atom required"}
 
+	def exec({:ok, task}) do
+		IO.puts "Running #{task.name}..."
+		Mix.Shell.IO.cmd(task.cmd)
+		IO.puts "Finished #{task.name}..."	
+	end
+
+	def exec({:error, message}), do: IO.puts message
+
 	defp get(task_id) do
 		EyeDrops.Tasks.get() |>
 		Enum.find(fn(task) -> 

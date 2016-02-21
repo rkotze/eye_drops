@@ -1,4 +1,6 @@
 defmodule EyeDrops.Commands do
+  alias EyeDrops.Task
+  alias EyeDrops.Tasks
 	@switches [:include_tasks]
 
 	def parse([]), do: {:ok, %{}}
@@ -13,6 +15,28 @@ defmodule EyeDrops.Commands do
     |> Enum.map(&String.to_atom(&1))
 
     {:ok, %{:include_tasks => include_list}}
+  end
+
+  def watch() do
+    task_id = IO.gets ""
+
+    watch
+  end
+
+  def rerun(task_id) do
+    case to_atom(task_id) do
+      :all ->
+        Tasks.get |>
+        Tasks.exec
+      task_id_atom ->
+        Task.to_exec(task_id_atom) |>
+        Task.exec
+    end
+  end
+
+  defp to_atom(task_id) do
+    String.replace(task_id, ~r/[^a-z_]+/, "") |>
+    String.to_atom
   end
 
   defp validate_switches!(arg_list) do

@@ -1,5 +1,6 @@
 defmodule EyeDrops.Tasks do
 	alias EyeDrops.Tasks.Path
+	alias EyeDrops.Task
 	
 	def get do
 		Application.get_env(:eye_drops, :tasks) |>
@@ -21,10 +22,8 @@ defmodule EyeDrops.Tasks do
 	end
 
 	def exec([task|tasks]) do
-		IO.puts "Running #{task.name}..."
-		Mix.Shell.IO.cmd(task.cmd)
-		IO.puts "Finished #{task.name}..."
-		exec(tasks)
+		Task.exec({:ok, task})
+		exec(tasks) 
 	end
 
 	def exec([]) do
