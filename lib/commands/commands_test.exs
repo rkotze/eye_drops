@@ -1,5 +1,6 @@
 defmodule EyeDrops.CommandsTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
+  import Mock
   alias EyeDrops.Commands
 
   test "Get specified task to watch" do
@@ -21,6 +22,30 @@ defmodule EyeDrops.CommandsTest do
   test "No switches passed" do
     result = Commands.parse([])
     assert result == {:ok, %{}}
+  end
+
+  test "rerun all tasks" do
+    with_mock EyeDrops.Tasks, [
+      get: fn -> ["tasks", "list"] end,
+      exec: fn (_tasks) -> "run tasks" end] 
+      do
+        Commands.rerun("all")
+
+        assert called EyeDrops.Tasks.get
+        assert called EyeDrops.Tasks.exec(["tasks", "list"])
+    end
+  end
+
+  test "rerun specific task by task_id :unit_tests" do
+    with_mock EyeDrops.Task, [
+      to_exec: fn (_task_id_atom) -> {:ok, "task"} end,
+      exec: fn (_tasks) -> "run task" end] 
+      do
+        Commands.rerun("unit_tests")
+
+        assert called EyeDrops.Task.to_exec(:unit_tests)
+        assert called EyeDrops.Task.exec({:ok, "task"})
+    end
   end
 
 end
