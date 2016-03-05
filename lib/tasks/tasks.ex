@@ -30,6 +30,12 @@ defmodule EyeDrops.Tasks do
 		:ok
 	end
 
+	def run_on_start(tasks) do
+		Enum.filter(tasks, fn(task) ->
+			Map.has_key?(task, :run_on_start) && task.run_on_start == true
+		end)
+	end
+
 	defp has_tasks(empty_tasks) when empty_tasks == [], do: raise TasksError, message: "No tasks found"
 
 	defp has_tasks(tasks), do: tasks
