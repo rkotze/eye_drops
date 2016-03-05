@@ -25,7 +25,8 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   defp deps do
     [
       {:fs, "~> 0.9.1"},
-      {:mock, "~> 0.1.1", only: :test}
+      {:mock, "~> 0.1.1", only: :test},
+      {:credo, "~> 0.3", only: [:dev, :test]}
     ]
   end
 

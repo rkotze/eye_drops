@@ -19,4 +19,5 @@ defmodule EyeDrops.Tasks.Path do
 
 		String.contains?(changed_file, pattern)
 	end
+	
 end
