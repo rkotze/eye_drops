@@ -1,5 +1,9 @@
 defmodule EyeDrops.Task do
-	defstruct id: "", name: "", cmd: "", path: ""
+	defstruct id: "",
+	name: "",
+	cmd: "",
+	path: "",
+	run_on_start: false
 
 	def to_exec(task_id) when is_atom(task_id) do
 		task = get(task_id)

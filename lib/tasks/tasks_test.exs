@@ -12,6 +12,7 @@ defmodule EyeDrops.TasksTest do
 		%{
 			id: :demo2,
 			name: "demo2",
+			run_on_start: true,
 			cmd: "echo demo2",
 			paths: ["lib/*"]
 		}]
@@ -62,5 +63,12 @@ defmodule EyeDrops.TasksTest do
 		task1 = Enum.at(tasks,0)
 		task2 = Enum.at(tasks,1)
 		assert String.contains?(printed, ["Running", task1.name, task2.name, "Finished"])
+	end
+
+	test "Find tasks to execute when EyeDrops starts", %{:tasks => tasks} do
+		start_tasks = EyeDrops.Tasks.run_on_start(tasks)
+		task = Enum.at(start_tasks, 0)
+		assert Enum.count(start_tasks) == 1
+		assert task.id == :demo2
 	end
 end
