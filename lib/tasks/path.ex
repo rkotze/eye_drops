@@ -10,11 +10,11 @@ defmodule EyeDrops.Tasks.Path do
 	end
 
 	def spotted?(changed_file, path_pattern) when is_binary(path_pattern) do
-		cond do
-		  String.contains?(path_pattern, "*") ->
-		  	pattern = Path.wildcard(path_pattern)
+		pattern = case String.contains?(path_pattern, "*") do
 		  true ->
-		  	pattern = path_pattern
+		  	Path.wildcard(path_pattern)
+		  _ ->
+		  	path_pattern
 		end
 
 		String.contains?(changed_file, pattern)
