@@ -17,7 +17,7 @@
         #
         # you can give explicit globs or simply directories
         # in the latter case `**/*.{ex,exs}` will be used
-        included: ["lib/", "src/", "web/", "apps/"],
+        included: ["lib/"],
         excluded: []
       },
       #

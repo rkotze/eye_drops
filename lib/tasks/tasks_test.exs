@@ -32,8 +32,8 @@ defmodule EyeDrops.TasksTest do
 
 	test "Raise an exception if no tasks returned" do
 		assert_raise TasksError, "No tasks found", fn -> 
-      EyeDrops.Tasks.get([])
-    end
+			EyeDrops.Tasks.get([])
+		end
 	end
 
 	# mock get config with empty tasks

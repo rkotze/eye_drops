@@ -19,7 +19,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   end
 
   defp aliases do
-    []
+    
   end
 
   defp deps do
