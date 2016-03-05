@@ -7,7 +7,7 @@ defmodule EyeDrops.Task do
 		  nil ->
 		  	{:error, "Task.cmd not found"} 
 		  _ ->
-		  	{:ok, task }
+		  	{:ok, task}
 		end
 	end
 
