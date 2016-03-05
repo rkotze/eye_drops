@@ -4,7 +4,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   def project do
     [app: :eye_drops,
      version: "1.1.0",
-     elixir: "~> 1.1",
+     elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
@@ -19,7 +19,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   end
 
   defp aliases do
-    
+    [ci: ci_mix]
   end
 
   defp deps do
@@ -44,5 +44,13 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/rkotze/eye_drops",
               "Docs" => "https://github.com/rkotze/eye_drops/blob/master/README.md"}]
+  end
+
+  defp ci_mix do
+    Mix.env(:test)
+    [
+      "credo",
+      "test"
+    ]
   end
 end
