@@ -7,7 +7,7 @@ defmodule Mix.Tasks.EyeDrops do
 		:ok = Application.start :fs, :permanent
 		IO.puts "Eye drops applied"
 
-		{:ok, switches } = Commands.parse(args)
+		{:ok, switches} = Commands.parse(args)
 		{:ok, _} = EyeBall.open(switches)
 
 		Commands.watch
