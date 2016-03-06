@@ -10,6 +10,7 @@ config :eye_drops,
 		},
 		%{
 			id: :acceptance,
+			run_on_start: true,
 			name: "acceptance tests",
 			cmd: "mix acceptance",
 			paths: ["feature/*"]

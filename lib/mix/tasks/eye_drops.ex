@@ -8,7 +8,8 @@ defmodule Mix.Tasks.EyeDrops do
 		IO.puts "Eye drops applied"
 
 		{:ok, switches} = Commands.parse(args)
-		{:ok, _} = EyeBall.open(switches)
+		{:ok, server} = EyeBall.open(switches)
+		EyeBall.run_on_start(server)
 
 		Commands.watch
 	end
