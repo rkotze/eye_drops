@@ -11,6 +11,10 @@ defmodule EyeDrops.EyeBall do
 		GenServer.call(server, {:lookup, key})
 	end
 
+	def run_on_start(server) do
+		GenServer.call(server, :run_on_start)
+	end
+
 	# GenServer implementation
 	def init(tasks) do
 		:ok = :fs.subscribe
@@ -34,6 +38,12 @@ defmodule EyeDrops.EyeBall do
 
 	def handle_call({:lookup, name}, _from, state) do
 		{:reply, Map.fetch(state, name), state}
+	end
+
+	def handle_call(:run_on_start, _from, state) do
+		tasks = Tasks.run_on_start(state.tasks)
+		:ok = Tasks.exec(tasks)
+		{:reply, state, state}
 	end
 
 	defp finish do

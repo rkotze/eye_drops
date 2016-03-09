@@ -27,7 +27,7 @@ Add `eye_drops` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:eye_drops, "~> 1.1.1"}]
+  [{:eye_drops, "~> 1.2.0"}]
 end
 ```
 
@@ -43,6 +43,7 @@ config :eye_drops,
     %{
       id: :unit_tests,
       name: "Unit tests",
+      run_on_start: true,
       cmd: "mix test",
       paths: ["web/*", "test/*"]
     },
@@ -61,6 +62,7 @@ You can setup multiple tasks and it will run one after the other.
 
 - `id` unique atom to identify tasks
 - `name` provide a name for task
+- `run_on_start` default is false. When EyeDrops starts, tasks with this set to true will run as well  
 - `cmd` the actual command to run
 - `path` is a list. Can be exact, glob pattern or just a folder name
 

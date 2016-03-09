@@ -3,7 +3,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
 
   def project do
     [app: :eye_drops,
-     version: "1.1.1",
+     version: "1.2.0",
      elixir: ">= 1.1.0 and <= 1.2.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -19,7 +19,12 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   end
 
   defp aliases do
-    [ci: ci_mix]
+    [ci: ci_mix,
+    acceptance: [&accept/1]]
+  end
+
+  def accept(_) do
+    Mix.shell.info "****** ACCEPTANCE RAN ******"
   end
 
   defp deps do
@@ -46,11 +51,11 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
               "Docs" => "https://github.com/rkotze/eye_drops/blob/master/README.md"}]
   end
 
-  defp ci_mix do
-    Mix.env(:test)
+  defp ci_mix() do
     [
       "credo",
       "test"
     ]
   end
+
 end
