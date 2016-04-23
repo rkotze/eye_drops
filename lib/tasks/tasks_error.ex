@@ -1,3 +1,3 @@
 defmodule TasksError do
-	defexception [:message]
+  defexception [:message]
 end

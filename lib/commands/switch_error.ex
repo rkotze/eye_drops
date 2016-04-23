@@ -1,3 +1,3 @@
 defmodule SwitchError do
-	defexception [:message]
+  defexception [:message]
 end
