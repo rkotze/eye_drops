@@ -1,5 +1,5 @@
 defmodule EyeDrops.Tasks do
-  alias EyeDrops.Tasks.Path
+  alias EyeDrops.File.Path
   alias EyeDrops.Task
   
   def get do

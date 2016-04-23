@@ -1,4 +1,4 @@
-defmodule EyeDrops.Tasks.Path do
+defmodule EyeDrops.File.Path do
   def exists?(path) do
     Enum.count(Path.wildcard(path)) > 0
   end

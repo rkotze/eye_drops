@@ -1,6 +1,6 @@
-defmodule EyeDrops.Tasks.PathTest do
+defmodule EyeDrops.File.PathTest do
   use ExUnit.Case
-  alias EyeDrops.Tasks.Path
+  alias EyeDrops.File.Path
 
   test "Path exists" do
     result = Path.exists?("lib/mix/tasks/eye_drops.ex")
