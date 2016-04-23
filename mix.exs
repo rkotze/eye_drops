@@ -19,7 +19,12 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   end
 
   defp aliases do
-    [ci: ci_mix]
+    [ci: ci_mix,
+    acceptance: [&accept/1]]
+  end
+
+  def accept(_) do
+    Mix.shell.info "****** FAKE ACCEPTANCE RAN ******"
   end
 
   defp deps do
