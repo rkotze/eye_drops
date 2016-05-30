@@ -28,4 +28,23 @@ defmodule EyeDrops.EyeBallTest do
       end
   end
 
+  test "Eye ball store time, file changes and task to run" do
+    track = {
+      :calendar.local_time,
+      "here/lib/eye_drops",
+      [%{
+        id: :unit_tests,
+        run_on_start: true,
+        name: "unit tests",
+        cmd: "mix test",
+        paths: ["lib/*"]
+      }]
+    }
+
+    {:ok, all_seeing} = EyeDrops.EyeBall.open(%{})
+    EyeDrops.EyeBall.track_store(all_seeing, track);
+    assert {:ok, changes} = EyeDrops.EyeBall.look(all_seeing, :track)
+    assert Enum.at(changes,0) == track
+  end
+
 end
