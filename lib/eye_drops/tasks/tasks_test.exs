@@ -1,6 +1,8 @@
 defmodule EyeDrops.TasksTest do
   use ExUnit.Case
+
   import ExUnit.CaptureIO
+  import Mock
 
   setup do
     tasks = [%{
@@ -34,6 +36,14 @@ defmodule EyeDrops.TasksTest do
   test "Raise an exception if no tasks returned" do
     assert_raise TasksError, "No tasks found", fn -> 
       EyeDrops.Tasks.get([])
+    end
+  end
+
+  test "Raise an exception if no tasks defined in the config" do
+    with_mock Application, [get_env: fn (_name, _key) -> nil end] do
+      assert_raise TasksError, "No tasks found in test config", fn -> 
+        EyeDrops.Tasks.get
+      end
     end
   end
 

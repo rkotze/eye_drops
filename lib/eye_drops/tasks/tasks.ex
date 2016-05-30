@@ -36,7 +36,9 @@ defmodule EyeDrops.Tasks do
     end)
   end
 
-  defp has_tasks(empty_tasks) when empty_tasks == [], do: raise TasksError, message: "No tasks found"
+  defp has_tasks(nil), do: raise TasksError, message: "No tasks found in #{Mix.env} config"
+
+  defp has_tasks([]), do: raise TasksError, message: "No tasks found"
 
   defp has_tasks(tasks), do: tasks
 
