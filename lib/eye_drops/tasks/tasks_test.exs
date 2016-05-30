@@ -54,6 +54,11 @@ defmodule EyeDrops.TasksTest do
     assert Enum.at(tasks,0).id == :demo1
   end
 
+  test "No tasks to run when file event is fired", %{:tasks => tasks} do
+    tasks = EyeDrops.Tasks.to_run(tasks, "some/path/.git/eye_drops.ex")
+    assert tasks == nil
+  end
+
   test "No tasks to run" do
     assert EyeDrops.Tasks.exec([]) == :ok
   end

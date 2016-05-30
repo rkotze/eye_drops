@@ -12,7 +12,7 @@ defmodule EyeDrops.Tasks do
     Enum.filter(fn task -> 
       task.id in task_list
     end) |>
-    has_tasks
+    has_tasks 
   end
 
   def to_run(tasks, changed_file) do
