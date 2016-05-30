@@ -19,9 +19,11 @@ defmodule EyeDrops.Tasks do
     filtered_tasks = Enum.filter(tasks, fn(task) -> 
       Path.spotted?(changed_file, task.paths)
     end)
-    cond do
-      filtered_tasks == [] -> nil
-      true -> tasks
+
+    if filtered_tasks == [] do
+      nil
+    else
+      tasks
     end
   end
 
