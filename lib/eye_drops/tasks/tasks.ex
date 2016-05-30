@@ -12,13 +12,17 @@ defmodule EyeDrops.Tasks do
     Enum.filter(fn task -> 
       task.id in task_list
     end) |>
-    has_tasks 
+    has_tasks
   end
 
   def to_run(tasks, changed_file) do
-    Enum.filter(tasks, fn(task) -> 
+    filtered_tasks = Enum.filter(tasks, fn(task) -> 
       Path.spotted?(changed_file, task.paths)
     end)
+    cond do
+      filtered_tasks == [] -> nil
+      true -> tasks
+    end
   end
 
   def exec([task|tasks]) do

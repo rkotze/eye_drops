@@ -30,6 +30,7 @@ defmodule EyeDrops.EyeBall do
   def handle_info({_pid, {:fs, :file_event}, {path, _event}}, state) do
     tasks = Tasks.to_run(state.tasks, to_string(path))
     if tasks do
+      IO.inspect path
       :ok = Tasks.exec(tasks)
       finish
     end
