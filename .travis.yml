@@ -6,7 +6,8 @@ otp_release:
   - 18.0
 elixir:
   - 1.1.0
-  - 1.2.3
+  - 1.2.6
+  - master
 env:
   - MIX_ENV=test
 script:
