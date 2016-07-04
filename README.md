@@ -4,7 +4,7 @@
 [![Gitter](https://badges.gitter.im/rkotze/eye_drops.svg)](https://gitter.im/rkotze/eye_drops?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Hex pm](https://img.shields.io/hexpm/v/eye_drops.svg?style=flat)](https://hex.pm/packages/eye_drops)
 
-### A configurable mix task to watch file changes
+### A configurable Elixir mix watch task
 
 `mix eye_drops` Start watching all configured tasks ... [more options](#optional-switches)
 
