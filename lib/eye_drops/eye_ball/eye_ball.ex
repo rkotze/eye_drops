@@ -15,6 +15,10 @@ defmodule EyeDrops.EyeBall do
     GenServer.call(server, :run_on_start)
   end
 
+  def track_store(server, store) do
+    GenServer.call(server, {:track, store})
+  end
+
   # GenServer implementation
   def init(tasks) do
     :ok = :fs.subscribe
@@ -44,6 +48,11 @@ defmodule EyeDrops.EyeBall do
     tasks = Tasks.run_on_start(state.tasks)
     :ok = Tasks.exec(tasks)
     {:reply, state, state}
+  end
+
+  def handle_call({:track, store}, _from, state) do
+    new_state = Map.put(state, :track, [store])
+    {:reply, new_state, new_state}
   end
 
   defp finish do
