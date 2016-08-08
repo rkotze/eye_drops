@@ -7,7 +7,7 @@ defmodule EyeDrops.File.Path do
     Enum.any?(path_pattern, fn(path) -> 
       String.contains?(changed_file, Path.wildcard(path))
     end)
-  end
+  end 
 
   def spotted?(changed_file, path_pattern) when is_binary(path_pattern) do
     pattern = case String.contains?(path_pattern, "*") do
@@ -17,7 +17,8 @@ defmodule EyeDrops.File.Path do
         path_pattern
     end
 
-    String.contains?(changed_file, pattern)
+    String.contains?(changed_file, pattern) 
+
   end
   
 end

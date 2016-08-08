@@ -24,19 +24,19 @@ defmodule EyeDrops.EyeBall do
     :ok = :fs.subscribe
     include_list = Map.get(tasks, :include_tasks, [])
     
-    tasks = case include_list do
+    eye_tasks = case include_list do
       list when list == [] -> Tasks.get
       list -> Tasks.get(list)
     end
-    {:ok, %{tasks: tasks}}
+    {:ok, %{tasks: eye_tasks}}
   end
 
   def handle_info({_pid, {:fs, :file_event}, {path, _event}}, state) do
     tasks = Tasks.to_run(state.tasks, to_string(path))
     if tasks do
       :ok = Tasks.exec(tasks)
-      finish
     end
+
     {:noreply, state}
   end
 
@@ -55,10 +55,4 @@ defmodule EyeDrops.EyeBall do
     {:reply, new_state, new_state}
   end
 
-  defp finish do
-    receive do
-      _ -> finish
-      after 0 -> :ok
-    end
-  end 
 end

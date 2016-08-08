@@ -9,7 +9,7 @@ defmodule EyeDrops.EyeBallTest do
     assert {:ok, tasks} = EyeDrops.EyeBall.look(reg_eye, :tasks)
     assert Enum.at(tasks, 0).id == :unit_tests
     assert Enum.count(tasks) == 1
-  end
+  end 
 
   test "Eye ball look at tasks all tasks" do
     {:ok, all_seeing} = EyeDrops.EyeBall.open(%{})
