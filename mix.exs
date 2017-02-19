@@ -4,7 +4,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   def project do
     [app: :eye_drops,
      version: "1.2.0",
-     elixir: ">= 1.1.0 and <= 1.2.3",
+     elixir: ">= 1.1.0 and <= 1.3.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
@@ -30,8 +30,8 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
   defp deps do
     [
       {:fs, "~> 0.9.1"},
-      {:mock, "~> 0.1.1", only: :test},
-      {:credo, "~> 0.3", only: [:dev, :test]}
+      {:mock, "~> 0.2.1", only: :test},
+      {:credo, "~> 0.6.1", only: [:dev, :test]}
     ]
   end
 
