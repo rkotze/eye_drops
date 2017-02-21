@@ -20,7 +20,7 @@ defmodule EyeDrops.Commands do
   def watch() do
     task_id = IO.gets ""
     rerun(task_id)
-    watch
+    :timer.sleep :infinity
   end
 
   def rerun(task_id) do
