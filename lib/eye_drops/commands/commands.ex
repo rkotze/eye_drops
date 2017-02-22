@@ -5,6 +5,7 @@ defmodule EyeDrops.Commands do
 
   def parse([]), do: {:ok, %{}}
   
+  @spec parse(argv) :: {:ok, include_list}
   def parse(args) do
     {arg_list, _, _} = OptionParser.parse(args)
 
@@ -17,12 +18,14 @@ defmodule EyeDrops.Commands do
     {:ok, %{:include_tasks => include_list}}
   end
 
+  @spec watch :: any
   def watch() do
     task_id = IO.gets ""
     rerun(task_id)
     :timer.sleep :infinity
   end
 
+  @spec rerun(atom) :: any
   def rerun(task_id) do
     case to_atom(task_id) do
       :all ->

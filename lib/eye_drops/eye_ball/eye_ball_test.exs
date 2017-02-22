@@ -5,8 +5,8 @@ defmodule EyeDrops.EyeBallTest do
 
   test "Eye ball looks at include tasks" do
     {:ok, arg_tasks} = Commands.parse(["--include-tasks", "unit_tests"])
-    {:ok, reg_eye} = EyeDrops.EyeBall.open(arg_tasks)
-    assert {:ok, tasks} = EyeDrops.EyeBall.look(reg_eye, :tasks)
+    {:ok, pid} = EyeDrops.EyeBall.open(arg_tasks)
+    assert {:ok, tasks} = EyeDrops.EyeBall.look(pid, :tasks)
     assert Enum.at(tasks, 0).id == :unit_tests
     assert Enum.count(tasks) == 1
   end
