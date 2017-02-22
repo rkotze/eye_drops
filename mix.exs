@@ -53,7 +53,7 @@ defmodule Mix.Tasks.EyeDrops.Mixfile do
 
   defp ci_mix() do
     [
-      "credo",
+      "credo -a",
       "test"
     ]
   end
