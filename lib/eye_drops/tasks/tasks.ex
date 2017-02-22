@@ -18,15 +18,9 @@ defmodule EyeDrops.Tasks do
 
   @spec to_run(list, String.t) :: list
   def to_run(tasks, changed_file) do
-    filtered_tasks = Enum.filter(tasks, fn(task) -> 
+    Enum.filter(tasks, fn(task) -> 
       Path.spotted?(changed_file, task.paths)
     end)
-
-    if filtered_tasks == [] do
-      nil
-    else
-      tasks
-    end
   end
 
   @spec exec(list) :: :ok

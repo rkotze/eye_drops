@@ -56,7 +56,7 @@ defmodule EyeDrops.TasksTest do
 
   test "No tasks to run when file event is fired", %{:tasks => tasks} do
     tasks = EyeDrops.Tasks.to_run(tasks, "some/path/.git/eye_drops.ex")
-    assert tasks == nil
+    assert tasks == []
   end
 
   test "No tasks to run" do

@@ -9,12 +9,22 @@ defmodule EyeDrops.EyeBallTest do
     assert {:ok, tasks} = EyeDrops.EyeBall.look(reg_eye, :tasks)
     assert Enum.at(tasks, 0).id == :unit_tests
     assert Enum.count(tasks) == 1
-  end 
+  end
 
   test "Eye ball look at tasks all tasks" do
-    {:ok, all_seeing} = EyeDrops.EyeBall.open(%{})
-    assert {:ok, tasks} = EyeDrops.EyeBall.look(all_seeing, :tasks)
+    {:ok, pid} = EyeDrops.EyeBall.open(%{})
+    assert {:ok, tasks} = EyeDrops.EyeBall.look(pid, :tasks)
     assert Enum.count(tasks) == 2
+  end
+
+  test "Eye ball handle_info is run with no tasks" do
+    with_mock EyeDrops.Tasks, [:passthrough], [
+      exec: fn ([]) -> :ok end]
+    do
+      {:ok, pid} = EyeDrops.EyeBall.open(%{})
+      send(pid, {pid, {:fs, :file_event}, {"path/does/not/exist.ex", "event"}})
+      assert called EyeDrops.Tasks.exec([])
+    end
   end
 
   test "Eye ball run tasks on start of eye drops" do
@@ -27,24 +37,4 @@ defmodule EyeDrops.EyeBallTest do
         assert called EyeDrops.Tasks.exec(:_)
       end
   end
-
-  test "Eye ball store time, file changes and task to run" do
-    track = {
-      :calendar.local_time,
-      "here/lib/eye_drops",
-      [%{
-        id: :unit_tests,
-        run_on_start: true,
-        name: "unit tests",
-        cmd: "mix test",
-        paths: ["lib/*"]
-      }]
-    }
-
-    {:ok, all_seeing} = EyeDrops.EyeBall.open(%{})
-    EyeDrops.EyeBall.track_store(all_seeing, track);
-    assert {:ok, changes} = EyeDrops.EyeBall.look(all_seeing, :track)
-    assert Enum.at(changes,0) == track
-  end
-
 end
