@@ -5,7 +5,7 @@ defmodule EyeDrops.Commands do
 
   def parse([]), do: {:ok, %{}}
   
-  @spec parse(argv) :: {:ok, include_list}
+  @spec parse(list) :: {:ok, tuple}
   def parse(args) do
     {arg_list, _, _} = OptionParser.parse(args)
 

@@ -1,4 +1,5 @@
 defmodule EyeDrops.File.Path do
+  @spec exists?(String.t) :: true | false
   def exists?(path) do
     Enum.count(Path.wildcard(path)) > 0
   end
