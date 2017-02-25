@@ -17,24 +17,22 @@ defmodule EyeDrops.EyeBallTest do
     assert Enum.count(tasks) == 2
   end
 
-  test "Eye ball handle_info is run with no tasks" do
-    with_mock EyeDrops.Tasks, [:passthrough], [
-      exec: fn ([]) -> :ok end]
-    do
-      {:ok, pid} = EyeDrops.EyeBall.open(%{})
-      send(pid, {pid, {:fs, :file_event}, {"path/does/not/exist.ex", "event"}})
-      assert called EyeDrops.Tasks.exec([])
-    end
+  test_with_mock "Eye ball handle_info is run with no tasks", EyeDrops.Tasks, [:passthrough], [
+    exec: fn ([]) -> :ok end]
+  do
+    {:ok, pid} = EyeDrops.EyeBall.open(%{})
+    message = {pid, {:fs, :file_event}, {"path/does/not/exist.ex", "event"}}
+    send(pid, message)
+    :timer.sleep(50) # hack to wait for send message
+    assert called EyeDrops.Tasks.exec([])
   end
 
-  test "Eye ball run tasks on start of eye drops" do
-    with_mock EyeDrops.Tasks, [:passthrough], [
-      exec: fn (_tasks) -> :ok end] 
-      do
-        {:ok, all_tasks} = EyeDrops.EyeBall.open(%{})
-        EyeDrops.EyeBall.run_on_start(all_tasks)
+  test_with_mock "Eye ball run tasks on start of eye drops", EyeDrops.Tasks, [:passthrough], [
+    exec: fn (_tasks) -> :ok end] 
+  do
+    {:ok, all_tasks} = EyeDrops.EyeBall.open(%{})
+    EyeDrops.EyeBall.run_on_start(all_tasks)
 
-        assert called EyeDrops.Tasks.exec(:_)
-      end
+    assert called EyeDrops.Tasks.exec(:_)
   end
 end
