@@ -31,5 +31,4 @@ defmodule EyeDrops.Task do
       task.id == task_id
     end)
   end
-
 end

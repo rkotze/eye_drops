@@ -36,6 +36,7 @@ defmodule EyeDrops.EyeBall do
     :ok = Tasks.to_run(state.tasks, to_string(path))
     |> Tasks.exec
 
+    flush
     {:noreply, state}
   end
 
@@ -49,5 +50,13 @@ defmodule EyeDrops.EyeBall do
     tasks = Tasks.run_on_start(state.tasks)
     :ok = Tasks.exec(tasks)
     {:reply, state, state}
+  end
+
+  @spec flush :: :ok
+  defp flush do
+    receive do
+      _       -> flush()
+      after 0 -> :ok
+    end
   end
 end

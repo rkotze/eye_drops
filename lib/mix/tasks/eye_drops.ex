@@ -9,7 +9,7 @@ defmodule Mix.Tasks.EyeDrops do
 
     {:ok, switches} = Commands.parse(args)
     {:ok, server} = EyeBall.open(switches)
-    EyeBall.run_on_start(server) 
+    EyeBall.run_on_start(server)
 
     Commands.watch
   end
