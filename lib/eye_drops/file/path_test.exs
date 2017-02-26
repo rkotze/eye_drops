@@ -23,7 +23,7 @@ defmodule EyeDrops.File.PathTest do
   end
 
   test "Changed file matches wildcard path from task" do
-    result = Path.spotted?("/projects/eye_drops/lib/mix/tasks/eye_drops.ex", "/projects/eye_drops/lib/*")
+    result = Path.spotted?("projects/eye_drops/lib/mix/tasks/eye_drops.ex", "lib/*")
     assert result == true
   end
 
